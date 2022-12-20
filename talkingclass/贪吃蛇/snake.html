@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇</title>
+    <script type="text/javascript" src="贪吃蛇.js"></script>
+    <style>
+            body {
+                text-align: center;
+                background-color: rgb(149, 208, 245);
+            }
+    
+            #snake {
+                margin-top: 20px;
+            }
+    
+            .a {
+                margin-top: 50px;
+                margin-left: 20px;
+                width: 600px;
+                font-size: 20px;
+    
+            }
+        </style>
+</head>
+<body>
+        <h2>贪吃蛇小游戏</h2>
+        <canvas id="snake" width="" height=""></canvas>
+    
+        <h3 id="score">我的得分：0</h3>
+        <h3 id="speed">当前速度：1</h3>
+    
+        <script>
+            var snake = new Snake("snake", "score", "speed", 36, 36);
+            snake.init();
+    
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,109 @@
+<html>
+   <head>
+          <style>
+		       #main{width:800px;height:600px;background:#000;margin:50px auto;position:relative;overflow:hidden}
+			   #star{width:80px;height:80px;left:360px;position:absolute}
+			   #girl{width:80px;height:80px;left:360px;bottom:10px;position:absolute}
+			   .goright{/*向右的时候*/
+	                  transform:rotateY(180deg);
+	            }
+	           .goleft{/*向左的时候*/
+	                 transform:rotateY(0deg);
+	           }
+		  </style>
+   </head>
+   <body>
+        <div id="main">
+		      <input type="button" value="开始" onclick="startGame()" id="btnStart"/>
+		      <img src="ball.png" id="star"/>
+			  <img src="图层 1.png" id="girl"/>
+			  <span id="bb" style="color:white;font-size:28px">50</span>
+			  <audio src="t.mp3" id="audio"></audio>
+		</div>
+   </body>
+   <script>
+         var  girlX=360;
+		 var  starY=0;
+		 var girl=document.getElementById("girl");
+		 var star=document.getElementById("star");
+		 var btnStart=document.getElementById("btnStart");
+		 var bb=document.getElementById("bb");
+		 var audio=document.getElementById("audio");
+		 var  timer=null;
+		 var  rate=20;
+		 var  blood=50;
+		 function startGame(){
+		   if(timer==null){
+		        timer= window.setInterval(move,100);
+				btnStart.value="暂停";
+			}else{
+			    window.clearInterval(timer);
+				timer=null;
+				btnStart.value="开始";
+			}
+		 }
+		 function move(){
+		     if(starY>600){
+			     blood-=10;//掉地上就扣分
+				 bb.innerHTML=blood;
+				 if(blood<=0){
+				       window.clearInterval(timer);
+					   alert("GAME OVER");
+				 }
+				 if(blood>=500){
+						window.clearInterval(timer);
+					   alert("You win!!!");
+				 }
+			     starY=0;
+				 star.style.left=parseInt(Math.random()*720)+"px";
+				 rate=20+parseInt(Math.random()*40);
+			 }
+			 else
+		         starY+=rate;
+			 star.style.top=starY+"px";
+			 
+			 if(isTouch(girl,star)==true){
+			     blood+=20;//接到了+20分
+				 bb.innerHTML=blood;
+			    audio.play();
+				 starY=0;
+				 star.style.left=parseInt(Math.random()*720)+"px";
+				 rate=20+parseInt(Math.random()*40);
+			 }
+		 }
+		 
+		  function isTouch(a,b){
+	             var a_left=parseInt(window.getComputedStyle(a,null)["left"]);//a.style.left;
+				 var a_right=a_left+parseInt(window.getComputedStyle(a,null)["width"]);//a.style.width;
+				 var a_top=parseInt(window.getComputedStyle(a,null)["top"]);a.style.top;
+				 var a_bottom=a_top+parseInt(window.getComputedStyle(a,null)["height"]);//a.style.height;
+				 
+				 var b_left=parseInt(window.getComputedStyle(b,null)["left"]);//b.style.left;
+				 var b_right=b_left+parseInt(window.getComputedStyle(b,null)["width"]);//b.style.width;
+				 var b_top=parseInt(window.getComputedStyle(b,null)["top"]);a.style.top;
+				 var b_bottom=b_top+parseInt(window.getComputedStyle(b,null)["height"]);//a.style.height;
+				 
+				 //排除没有接触到的4种情况，就是接触到了
+				 if(a_right<b_left||a_left>b_right||a_bottom<b_top||a_top>b_bottom)
+				   return false;
+				 else
+				   return true;
+	  }
+		 
+		 
+		 
+         document.onkeydown=function(e){
+		     switch(e.keyCode){
+				   case 37:
+     				      girlX=(girlX-10<0)?720:(girlX-10);
+						  girl.className="goleft";
+				          break;
+				   case 39: 
+				          girlX=(girlX+10>720)?0:(girlX+10);
+						  girl.className="goright";
+				          break;
+             }
+			  girl.style.left=girlX+"px";
+		 }
+   </script>
+</html>

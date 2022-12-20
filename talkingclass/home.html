@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <style>
+        body {
+            background-image: url(back.jpg);
+            background-repeat: no-repeat;
+            background-repeat: repeat-y;
+            background-repeat: repeat-x;
+            background-attachment: fixed;
+        }
+        .full {
+            background-image: linear-gradient(to right top, rgba(255,255,255,0.4), rgba(255,255,255,0.7));
+            position: relative;
+            width: 100%;
+            height: 850px;
+            display: flex;
+            border-radius: 30px;
+            align-items: center;
+            top: -5px;
+            z-index: 100;
+        }
+        .h {
+            position: relative;
+            z-index: 200;
+            top: -600px;
+            left: 500px;
+            font-size: 60px;
+            height: 50px;
+            
+        }
+        .btn {
+            position: relative;
+            top: -550px;
+            left: 603px;
+            z-index: 200;
+        }
+        .btn button{
+            margin: 25px;
+            background-image: linear-gradient( 135deg, #FAB2FF 10%, #1904E5 100%);
+            border: none;
+            color: white;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            background-size: 200%;
+            transition: 0.6s;
+            outline: none;
+
+        }
+        .btn button:hover {
+            box-shadow: 0 10px 20px 0 rgba(47,55,213,0.3);
+            background-position: right;
+            transform: scale(1.05);
+        }
+    </style>
+
+    <script>
+        var video= document.getElementById('v1');
+        video.playbackRate = 0.5;
+    </script>
+</head>
+<body>
+    <div class="full"></div>
+    <h1 class="h">点击按钮开始游玩</h1>
+    <a class="btn" href="chose.html">
+        <button>开始游戏</button>
+    </a>
+    
+</body>
+</html>
